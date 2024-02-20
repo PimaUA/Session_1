@@ -24,9 +24,9 @@ public class TextFileAnalyzer {
             String[] words = readFileAndConvertToLowerCase().split("[\\p{Punct}\\s]+");
             List<String> list = Arrays.asList(words);
             long result = Failable.stream(list).filter(i -> Collections.frequency(list, i) == 1).stream().count();
-            System.out.println("Current text file has "+result+" unique words.");
+            LOGGER.info("Current text file has "+result+" unique words.");
         } catch (IOException e) {
-            LOGGER.info("File not found!");
+            LOGGER.warn("File not found!");
         }
     }
 
