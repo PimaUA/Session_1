@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.io.File;
 import java.nio.charset.*;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,11 +16,10 @@ public class TextFileAnalyzer {
     private static final Logger LOGGER = LogManager.getLogger(TextFileAnalyzer.class);
 
     public static void main(String[] args) {
-        TextFileAnalyzer textFileAnalyzer = new TextFileAnalyzer();
-        textFileAnalyzer.countUniqueWords();
+        countUniqueWords();
     }
 
-    public void countUniqueWords() {
+    public static void countUniqueWords() {
         try {
             String[] words = readFileAndConvertToLowerCase().split("[\\p{Punct}\\s]+");
             List<String> list = Arrays.asList(words);
@@ -32,9 +30,9 @@ public class TextFileAnalyzer {
         }
     }
 
-    public String readFileAndConvertToLowerCase() throws IOException {
+    public static String readFileAndConvertToLowerCase() throws IOException {
         String finalLine = null;
-        File file = new File("src/main/resources/text2.txt");
+        File file = new File("src/main/resources/text.txt");
         try (LineIterator iterator = FileUtils.lineIterator(file, StandardCharsets.UTF_8.name())) {
             StringBuilder stringBuilder = new StringBuilder();
             while (iterator.hasNext()) {
