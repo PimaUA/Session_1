@@ -26,16 +26,18 @@ public class TextFileAnalyzer {
     }
 
     public String readFileAndConvertToLowerCase() throws IOException {
-        String finalLowerCaseLine = null;
-        File file = new File("src/main/resources/text.txt");
+        String finalLine = null;
+        File file = new File("src/main/resources/text2.txt");
         try (LineIterator iterator = FileUtils.lineIterator(file, StandardCharsets.UTF_8.name())) {
             StringBuilder stringBuilder = new StringBuilder();
             while (iterator.hasNext()) {
                 String line = iterator.nextLine() + " ";
-                finalLowerCaseLine = stringBuilder.append(line).toString().toLowerCase();
+                finalLine = stringBuilder.append(line).toString();
             }
         }
-        return finalLowerCaseLine;
+        if (finalLine != null) {
+            return finalLine.toLowerCase();
+        } else return " ";
     }
 }
 
